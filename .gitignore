@@ -1,0 +1,3 @@
+.vscode/
+JavaJDBC/jdbc/target/*
+JavaJDBC/jdbc/.idea/*
