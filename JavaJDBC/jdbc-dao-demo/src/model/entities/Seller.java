@@ -1,23 +1,31 @@
 package model.entities;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
 
-public class Seller {
+public class Seller implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Integer id;
     private String name;
     private String email;
-    private LocalDate birthDate;
+    private Date birthDate;
     private Double baseSalary;
 
     private Department department;
 
-    public Seller(Double baseSalary, LocalDate birthDate, String email, Integer id, String name) {
+    public Seller() {
+    }
+
+    public Seller(Double baseSalary, Date birthDate, String email, Integer id, String name, Department department) {
         this.baseSalary = baseSalary;
         this.birthDate = birthDate;
         this.email = email;
         this.id = id;
         this.name = name;
+        this.department = department;
     }
 
     public Double getBaseSalary() {
@@ -28,20 +36,20 @@ public class Seller {
         this.baseSalary = baseSalary;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
     public Department getDepartment() {
         return department;
     }
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getEmail() {
@@ -66,5 +74,29 @@ public class Seller {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Seller seller = (Seller) o;
+        return Objects.equals(id, seller.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Seller [" +
+                "baseSalary=" + baseSalary +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", birthDate=" + birthDate +
+                ", department=" + department +
+                "]";
     }
 }
