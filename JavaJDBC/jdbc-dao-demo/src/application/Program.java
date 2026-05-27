@@ -5,12 +5,15 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Program {
     public static void main(String[] args) {
 
+        Scanner leia = new Scanner(System.in);
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
@@ -32,5 +35,25 @@ public class Program {
         for (Seller obj : list) {
             System.out.println(obj);
         }
+
+
+        System.out.println("\n=== TEST 4: seller insert =====");
+        Seller newSeller = new Seller(4000.0, new Date(), "greg@gmail.com", null, "greg", department);
+        sellerDao.insert(newSeller);
+        System.out.println("Insered! New is = " + newSeller.getId());
+
+        System.out.println("\n=== TEST 5: seller UPDATE =====");
+        seller = sellerDao.findById(1);
+        seller.setName("Marta Waine");
+        sellerDao.Update(seller);
+        System.out.println("Update completo ");
+
+        System.out.println("\n=== TEST 6: seller delete =====");
+        System.out.println("Enter id for delete teste:");
+        int id = leia.nextInt();
+        sellerDao.deletById(id);
+        System.out.println("Delete completed");
+
+        leia.close();
     }
 }
