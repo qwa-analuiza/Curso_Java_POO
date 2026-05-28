@@ -33,3 +33,4 @@ bin/
 .idea/
 target/
 CursoJPA/src/Dominio/Pessoa.java
+.course/
