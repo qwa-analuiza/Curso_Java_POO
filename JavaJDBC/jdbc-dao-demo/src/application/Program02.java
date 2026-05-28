@@ -29,7 +29,7 @@ public class Program02 {
         System.out.println("TESTE 03 ----------------- Insert  ");
         Department newDepartment = new Department(null, "musica");
         departmentDao.insert(newDepartment);
-        System.out.println("Inserido! iNSERED! Não acredito naão acreduro nisso");
+        System.out.println("Insered!");
 
         System.out.println();
         System.out.println("TESTE 04 ----------------- Update  ");
@@ -40,7 +40,7 @@ public class Program02 {
 
         System.out.println();
         System.out.println("TESTE 05 ----------------- Delete  ");
-        System.out.println("insira um número de id para deleção ?");
+        System.out.println("Enter a ID for delete ?");
         int id = leia.nextInt();
         departmentDao.deleteById(id);
         System.out.println("Delete completed");
