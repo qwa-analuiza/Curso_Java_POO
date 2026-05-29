@@ -3,10 +3,12 @@ package com.educandoweb.coursespring.config;
 
 import com.educandoweb.coursespring.entities.Category;
 import com.educandoweb.coursespring.entities.Order;
+import com.educandoweb.coursespring.entities.Product;
 import com.educandoweb.coursespring.entities.User;
 import com.educandoweb.coursespring.entities.enums.OrderStatus;
 import com.educandoweb.coursespring.repositories.CategoryRepository;
 import com.educandoweb.coursespring.repositories.OrderRepository;
+import com.educandoweb.coursespring.repositories.ProductRepository;
 import com.educandoweb.coursespring.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -29,6 +31,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -36,7 +41,14 @@ public class TestConfig implements CommandLineRunner {
         Category cat1 = new Category(null, "Eletronics");
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computers");
+
+        Product p1 = new Product(null, "Lorem ipsum dolor sit amet, consectetur.", "", "The Lord of the Rings", 90.5);
+        Product p2 = new Product(null, "Nulla eu imperdiet purus. Maecenas ante.", "","Smart TV", 2190.0);
+        Product p3 = new Product(null, "Nam eleifend maximus tortor, at mollis.","",  "Macbook Pro", 1250.0);
+        Product p4 = new Product(null,"Donec aliquet odio ac rhoncus cursus.", "", "PC Gamer",1200.00);
+        Product p5 = new Product(null,"Cras fringilla convallis sem vel faucibus.", "", "Rails for Dummies",100.99);
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "98888888", "1234556");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "97777777777", "123456");
