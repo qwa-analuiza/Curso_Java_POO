@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import jakarta.persistence.GenerationType;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +23,9 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
+
     public User() {
     }
 
@@ -32,7 +37,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getEmail() {
+     public String getEmail() {
         return email;
     }
 
@@ -70,6 +75,10 @@ public class User implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Order> getOrders(){
+        return orders;
     }
 
     @Override
