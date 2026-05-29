@@ -1,9 +1,11 @@
 package com.educandoweb.coursespring.config;
 
 
+import com.educandoweb.coursespring.entities.Category;
 import com.educandoweb.coursespring.entities.Order;
 import com.educandoweb.coursespring.entities.User;
 import com.educandoweb.coursespring.entities.enums.OrderStatus;
+import com.educandoweb.coursespring.repositories.CategoryRepository;
 import com.educandoweb.coursespring.repositories.OrderRepository;
 import com.educandoweb.coursespring.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +26,17 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
+
+        Category cat1 = new Category(null, "Eletronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "98888888", "1234556");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "97777777777", "123456");
@@ -36,6 +46,6 @@ public class TestConfig implements CommandLineRunner {
         Order o3 = new Order(u1, null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT);
 
         userRepository.saveAll(Arrays.asList(u1, u2));
-        orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+        orderRepository.saveAll(Arrays.asList(o1, o2, o3));
     }
 }
