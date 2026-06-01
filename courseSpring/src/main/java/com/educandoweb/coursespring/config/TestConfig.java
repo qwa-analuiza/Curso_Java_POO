@@ -4,6 +4,7 @@ package com.educandoweb.coursespring.config;
 import com.educandoweb.coursespring.entities.*;
 import com.educandoweb.coursespring.entities.enums.OrderStatus;
 import com.educandoweb.coursespring.repositories.*;
+import org.hibernate.boot.model.source.spi.PluralAttributeElementSourceOneToMany;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -72,5 +73,9 @@ public class TestConfig implements CommandLineRunner {
         OrdemItem oi4 = new OrdemItem(o3, p5, p5.getPrice(), 2);
 
         ordemItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+        Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
+        o1.setPayment(pay1);
+
+        orderRepository.save(o1);
     }
 }
