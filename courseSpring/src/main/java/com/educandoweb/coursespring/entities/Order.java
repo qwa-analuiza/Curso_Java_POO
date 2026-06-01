@@ -86,6 +86,14 @@ public class Order implements Serializable {
         return items;
     }
 
+    public Double getTotal() {
+        double soma = 0.0;
+
+        for(OrdemItem x : items){
+            soma += x.getSubTotal();
+        }
+        return  soma;
+    }
 
     public void setOrderStatus(OrderStatus orderStatus) {
         if (orderStatus != null) {
