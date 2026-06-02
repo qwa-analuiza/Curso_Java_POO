@@ -2,7 +2,7 @@ package com.educandoweb.coursespring.services;
 
 import com.educandoweb.coursespring.entities.User;
 import com.educandoweb.coursespring.repositories.UserRepository;
-import org.hibernate.sql.Update;
+import com.educandoweb.coursespring.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,33 +15,33 @@ public class UserServices {
     @Autowired // injeção de dependência
     private UserRepository repository;
 
-    public List<User> findAll(){ // metodo que retorna todos os usuários do banco
+    public List<User> findAll() { // metodo que retorna todos os usuários do banco
         return repository.findAll();
     }
 
-    public User findById(Long id){
-      Optional<User> obj = repository.findById(id);
-      return obj.get();
+    public User findById(Long id) {
+        Optional<User> obj = repository.findById(id);
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    public User insert(User obj){
-        return  repository.save(obj);
+    public User insert(User obj) {
+        return repository.save(obj);
     }
 
-    public void delete(Long id){
-     repository.deleteById(id);
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 
-    public User update(Long id, User obj){
+    public User update(Long id, User obj) {
         User entity = repository.getReferenceById(id);
         updateData(entity, obj);
-        return  repository.save(entity);
+        return repository.save(entity);
     }
 
-    private void updateData(User entity, User obj){
-       entity.setName(obj.getName());
-       entity.setEmail(obj.getEmail());
-       entity.setPhone(obj.getPhone());
+    private void updateData(User entity, User obj) {
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
     }
 
 }
