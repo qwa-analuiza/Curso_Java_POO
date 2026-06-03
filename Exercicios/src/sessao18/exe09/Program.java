@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Program {
-    public static void main(String[] args) {
+     public static void main(String[] args) {
 
         Locale.setDefault(Locale.US);
         Scanner leia = new Scanner(System.in);
