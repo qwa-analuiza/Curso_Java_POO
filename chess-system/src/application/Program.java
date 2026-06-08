@@ -12,34 +12,33 @@ public class Program {
 
     public static void main(String[] args) {
 
-        Scanner leia = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         ChessMatch chessMatch = new ChessMatch();
 
         while (true) {
             try {
                 UI.clearScreen();
-                UI.printBoard(chessMatch.getPieces());
+                UI.printMatch(chessMatch);
                 System.out.println();
                 System.out.print("Source: ");
-                ChessPosition source = UI.readChessPosition(leia);
+                ChessPosition source = UI.readChessPosition(sc);
 
                 boolean[][] possibleMoves = chessMatch.possibleMoves(source);
                 UI.clearScreen();
                 UI.printBoard(chessMatch.getPieces(), possibleMoves);
-
                 System.out.println();
                 System.out.print("Target: ");
-                ChessPosition target = UI.readChessPosition(leia);
+                ChessPosition target = UI.readChessPosition(sc);
 
                 ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
             }
             catch (ChessException e) {
                 System.out.println(e.getMessage());
-                leia.nextLine();
+                sc.nextLine();
             }
             catch (InputMismatchException e) {
                 System.out.println(e.getMessage());
-                leia.nextLine();
+                sc.nextLine();
             }
         }
     }
