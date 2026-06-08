@@ -8,9 +8,9 @@ public class Position {
     public Position() {
     }
 
-    public Position(int colum, int row) {
-        this.colum = colum;
+    public Position(int row, int colum) {
         this.row = row;
+        this.colum = colum;
     }
 
     public int getColum() {
