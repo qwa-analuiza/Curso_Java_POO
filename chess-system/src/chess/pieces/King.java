@@ -30,7 +30,6 @@ public class King extends ChessPiece {
         return p != null && p instanceof Rook && p.getColor() == getColor() && p.getMoveCount() == 0;
     }
 
-
     @Override
     public boolean[][] possibleMoves() {
         boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
@@ -105,7 +104,6 @@ public class King extends ChessPiece {
                     mat[position.getRow()][position.getColum() - 2] = true;
                 }
             }
-
         }
         return mat;
     }

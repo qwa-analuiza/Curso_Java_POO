@@ -11,10 +11,7 @@ import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
 
-import javax.sound.sampled.Line;
-
 public class UI {
-
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -35,7 +32,6 @@ public class UI {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
-    // https://stackoverflow.com/questions/2979383/java-clear-the-console
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -48,7 +44,7 @@ public class UI {
             int row = Integer.parseInt(s.substring(1));
             return new ChessPosition(column, row);
         } catch (RuntimeException e) {
-            throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8.");
+            throw new InputMismatchException("Erro ao ler a posição do xadrez. Os valores válidos são de a1 a h8.");
         }
     }
 
@@ -57,17 +53,16 @@ public class UI {
         System.out.println();
         printCapturedPieces(captured);
         System.out.println();
-        System.out.println("Turn : " + chessMatch.getTurn());
+        System.out.println("Rodada : " + chessMatch.getTurn());
         if (!chessMatch.getCheckMate()) {
-            System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+            System.out.println("Jogador em espera: " + chessMatch.getCurrentPlayer());
             if (chessMatch.getCheck()) {
                 System.out.println("CHECK!");
             }
         } else {
             System.out.println("CHECKMATE");
-            System.out.println("Winner " + chessMatch.getCurrentPlayer());
+            System.out.println("GANHADOR! " + chessMatch.getCurrentPlayer());
         }
-
     }
 
     public static void printBoard(ChessPiece[][] pieces) {
@@ -112,16 +107,15 @@ public class UI {
         List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
         List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
 
-        System.out.println("Captured pieces:");
-        System.out.print("White pieces: ");
+        System.out.println("Peças capturadas:");
+        System.out.print("Peças Brancas ");
         System.out.print(ANSI_WHITE);
         System.out.print(Arrays.toString(white.toArray()));
         System.out.println(ANSI_RESET);
 
-        System.out.print("Black pieces: ");
+        System.out.print("Peçads Pretas ");
         System.out.print(ANSI_YELLOW);
         System.out.print(Arrays.toString(black.toArray()));
         System.out.println(ANSI_RESET);
     }
-
 }
