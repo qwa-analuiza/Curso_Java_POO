@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import repository.PostRepository;
 import services.exception.ObjectNotFoundException;
 
-
 @Service
 public class PostService {
 
