@@ -1,6 +1,8 @@
 package com.educandoweb.workshopjavafcjdbc.gui;
 
 import com.educandoweb.workshopjavafcjdbc.HelloApplication;
+import com.educandoweb.workshopjavafcjdbc.gui.listeners.DataChangeListener;
+import com.educandoweb.workshopjavafcjdbc.gui.util.Alerts;
 import com.educandoweb.workshopjavafcjdbc.gui.util.Utils;
 import com.educandoweb.workshopjavafcjdbc.model.entities.Department;
 import com.educandoweb.workshopjavafcjdbc.model.services.DepartmentService;
@@ -11,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,7 +27,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DepartmentListController implements Initializable {
+public class DepartmentListController implements Initializable, DataChangeListener {
 
     private DepartmentService service;
 
@@ -83,6 +86,7 @@ public class DepartmentListController implements Initializable {
             DepartmentFormController controller = loader.getController();
             controller.setDepartment(obj);
             controller.setDepartmentService(new DepartmentService());
+            controller.subscribeDataChangeListener(this);
             controller.upDateFormData();
 
             Stage dialogStage = new Stage();
@@ -93,8 +97,12 @@ public class DepartmentListController implements Initializable {
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.showAndWait();
         }catch (IOException e){
-//            Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
-            e.printStackTrace();
+          Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
         }
+    }
+
+    @Override
+    public void onDataChanged() {
+        updateTableView();
     }
 }
