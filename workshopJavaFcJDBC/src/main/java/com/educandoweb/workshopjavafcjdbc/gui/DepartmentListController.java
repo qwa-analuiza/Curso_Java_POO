@@ -1,7 +1,6 @@
 package com.educandoweb.workshopjavafcjdbc.gui;
 
 import com.educandoweb.workshopjavafcjdbc.HelloApplication;
-import com.educandoweb.workshopjavafcjdbc.gui.util.Alerts;
 import com.educandoweb.workshopjavafcjdbc.gui.util.Utils;
 import com.educandoweb.workshopjavafcjdbc.model.entities.Department;
 import com.educandoweb.workshopjavafcjdbc.model.services.DepartmentService;
@@ -12,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
