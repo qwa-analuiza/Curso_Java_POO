@@ -32,5 +32,4 @@ bin/
 .vscode/
 .idea/
 target/
-CursoJPA/src/Dominio/Pessoa.java
-.course/
+*.iml

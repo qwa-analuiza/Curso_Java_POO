@@ -1,0 +1,28 @@
+package sessao18.exe04;
+
+import sessao18.exe04.entities.Product;
+import sessao18.exe04.util.UppercaseName;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+
+public class Program {
+    public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
+        List<Product> list = new ArrayList<>();
+
+        list.add(new Product("Tv", 900.00));
+        list.add(new Product("Mouse", 50.00));
+        list.add(new Product("Tablet", 350.00));
+        list.add(new Product("HD case", 80.90));
+
+
+
+      List<String> names = list.stream().map(p -> p.getName().toUpperCase()).collect(Collectors.toList());
+
+      names.forEach(System.out::println);
+
+    }
+}

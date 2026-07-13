@@ -1,0 +1,34 @@
+package com.curso.operacoes;
+
+
+import com.curso.db.DB;
+import com.curso.db.DbIntegrityException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class DeletarDados {
+    public static void main(String[] args){
+        Connection conn = null;
+        PreparedStatement st = null;
+        try{
+            conn = DB.getConnection();
+            st = conn.prepareStatement(
+                    "DELETE FROM department"
+                        + "WHERE " +
+                            "iD = ?");
+
+            st.setInt(1, 5);
+
+            int rowsAffected = st.executeUpdate();
+            System.out.println("Done! Rows Affected: " + rowsAffected);
+        }catch(SQLException e){
+            throw new DbIntegrityException(e.getMessage());
+        }
+        finally{
+            DB.closeStatement(st);
+            DB.closeConnection();
+        }
+    }
+}
