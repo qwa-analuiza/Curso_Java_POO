@@ -2,28 +2,29 @@ package com.educandoweb.workshopjavafcjdbc.model.services;
 
 import com.educandoweb.workshopjavafcjdbc.model.dao.DaoFactory;
 import com.educandoweb.workshopjavafcjdbc.model.dao.DepartmentDao;
+import com.educandoweb.workshopjavafcjdbc.model.dao.SellerDao;
 import com.educandoweb.workshopjavafcjdbc.model.entities.Department;
+import com.educandoweb.workshopjavafcjdbc.model.entities.Seller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class DepartmentService {
+public class SellerService {
 
-    private DepartmentDao dao = DaoFactory.createDepartmentDao();
+    private SellerDao dao = DaoFactory.createSellerDao();
 
-    public List<Department> findAll() {
+    public List<Seller> findAll() {
         return dao.findAll();
     }
 
-    public void saveOrUpdate(Department obj) {
+    public void saveOrUpdate(Seller obj) {
         if (obj.getId() == null) {
             dao.insert(obj);
         } else {
-            dao.update(obj);
+            dao.Update(obj);
         }
     }
 
-    public void remove(Department obj){
-        dao.deleteById(obj.getId());
+    public void remove(Seller obj){
+        dao.deletById(obj.getId());
     }
 }

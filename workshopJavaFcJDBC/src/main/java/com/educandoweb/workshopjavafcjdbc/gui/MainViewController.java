@@ -3,6 +3,7 @@ package com.educandoweb.workshopjavafcjdbc.gui;
 import com.educandoweb.workshopjavafcjdbc.HelloApplication;
 import com.educandoweb.workshopjavafcjdbc.gui.util.Alerts;
 import com.educandoweb.workshopjavafcjdbc.model.services.DepartmentService;
+import com.educandoweb.workshopjavafcjdbc.model.services.SellerService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,8 +32,10 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemSellerAction() {
-        System.out.println("onMenuItemSellerAction");
-    }
+        loadView("/gui/SellerList.fxml", (SellerListController controller) -> {
+            controller.setSellerService(new SellerService());
+            controller.updateTableView();
+        });}
 
     @FXML
     public void onMenuItemDepartmentAction() {
