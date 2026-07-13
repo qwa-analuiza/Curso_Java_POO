@@ -1,11 +1,13 @@
 package com.educandoweb.workshopjavafcjdbc.gui;
 
 import com.educandoweb.workshopjavafcjdbc.HelloApplication;
+import com.educandoweb.workshopjavafcjdbc.db.DbIntegrityException;
 import com.educandoweb.workshopjavafcjdbc.gui.listeners.DataChangeListener;
 import com.educandoweb.workshopjavafcjdbc.gui.util.Alerts;
 import com.educandoweb.workshopjavafcjdbc.gui.util.Utils;
 import com.educandoweb.workshopjavafcjdbc.model.entities.Department;
 import com.educandoweb.workshopjavafcjdbc.model.entities.Seller;
+import com.educandoweb.workshopjavafcjdbc.model.services.DepartmentService;
 import com.educandoweb.workshopjavafcjdbc.model.services.SellerService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -107,7 +109,8 @@ public class SellerListController implements Initializable, DataChangeListener {
 
 			SellerFormController controller = loader.getController();
 			controller.setSeller(obj);
-			controller.setSellerService(new SellerService());
+			controller.setServices(new SellerService(), new DepartmentService());
+            controller.loadAssociateObjects();
 			controller.subscribeDataChangeListener(this);
 			controller.upDateFormData();
 
@@ -119,6 +122,7 @@ public class SellerListController implements Initializable, DataChangeListener {
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.showAndWait();
 		} catch (IOException e) {
+            e.printStackTrace();
 			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
 		}
     }
@@ -176,7 +180,7 @@ public class SellerListController implements Initializable, DataChangeListener {
                 service.remove(obj);
                 updateTableView();
             }
-            catch (db.DbIntegrityException e) {
+            catch (DbIntegrityException e) {
                 Alerts.showAlert("Error removing object", null, e.getMessage(), Alert.AlertType.ERROR);
             }
         }

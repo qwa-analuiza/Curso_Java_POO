@@ -22,7 +22,7 @@ public class DB {
                 conn = DriverManager.getConnection(url, props);
             }
             catch (SQLException e) {
-                throw new db.DbException(e.getMessage());
+                throw new DbException(e.getMessage());
             }
         }
         return conn;
@@ -33,7 +33,7 @@ public class DB {
             try {
                 conn.close();
             } catch (SQLException e) {
-                throw new db.DbException(e.getMessage());
+                throw new DbException(e.getMessage());
             }
         }
     }
@@ -42,7 +42,7 @@ public class DB {
         try (InputStream is = DB.class.getResourceAsStream("/db.properties")) {
 
             if (is == null) {
-                throw new db.DbException("Arquivo db.properties não encontrado");
+                throw new DbException("Arquivo db.properties não encontrado");
             }
 
             Properties props = new Properties();
@@ -50,7 +50,7 @@ public class DB {
             return props;
         }
         catch (IOException e) {
-            throw new db.DbException(e.getMessage());
+            throw new DbException(e.getMessage());
         }
     }
 
@@ -59,7 +59,7 @@ public class DB {
             try {
                 st.close();
             } catch (SQLException e) {
-                throw new db.DbException(e.getMessage());
+                throw new DbException(e.getMessage());
             }
         }
     }
@@ -69,7 +69,7 @@ public class DB {
             try {
                 rs.close();
             } catch (SQLException e) {
-                throw new db.DbException(e.getMessage());
+                throw new DbException(e.getMessage());
             }
         }
     }

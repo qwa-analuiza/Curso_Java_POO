@@ -1,6 +1,7 @@
 package com.educandoweb.workshopjavafcjdbc.gui;
 
 import com.educandoweb.workshopjavafcjdbc.HelloApplication;
+import com.educandoweb.workshopjavafcjdbc.db.DbIntegrityException;
 import com.educandoweb.workshopjavafcjdbc.gui.listeners.DataChangeListener;
 import com.educandoweb.workshopjavafcjdbc.gui.util.Alerts;
 import com.educandoweb.workshopjavafcjdbc.gui.util.Utils;
@@ -167,7 +168,7 @@ public class DepartmentListController implements Initializable, DataChangeListen
             try {
                 service.remove(obj);
                 updateTableView();
-            } catch (db.DbIntegrityException e) {
+            } catch (DbIntegrityException e) {
                 Alerts.showAlert("Error removing object", null, e.getMessage(), Alert.AlertType.ERROR);
             }
         }

@@ -1,10 +1,10 @@
 package com.educandoweb.workshopjavafcjdbc.model.dao.impl;
 
 import com.educandoweb.workshopjavafcjdbc.db.DB;
-import db.DbException;
-import db.DbIntegrityException;
-import com.educandoweb.workshopjavafcjdbc.model.dao.DepartmentDao;
+import com.educandoweb.workshopjavafcjdbc.db.DbException;
+import com.educandoweb.workshopjavafcjdbc.db.DbIntegrityException;
 import com.educandoweb.workshopjavafcjdbc.model.entities.Department;
+import com.educandoweb.workshopjavafcjdbc.model.dao.DepartmentDao;
 
 import java.sql.*;
 import java.util.ArrayList;

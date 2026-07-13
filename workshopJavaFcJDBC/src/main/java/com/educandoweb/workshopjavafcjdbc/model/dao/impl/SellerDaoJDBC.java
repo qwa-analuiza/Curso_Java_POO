@@ -1,7 +1,7 @@
 package com.educandoweb.workshopjavafcjdbc.model.dao.impl;
 
 import com.educandoweb.workshopjavafcjdbc.db.DB;
-import db.DbException;
+import com.educandoweb.workshopjavafcjdbc.db.DbException;
 import com.educandoweb.workshopjavafcjdbc.model.dao.SellerDao;
 import com.educandoweb.workshopjavafcjdbc.model.entities.Department;
 import com.educandoweb.workshopjavafcjdbc.model.entities.Seller;
@@ -170,7 +170,7 @@ public class SellerDaoJDBC implements SellerDao {
         obj.setName(rs.getString("Name"));
         obj.setEmail(rs.getString("Email"));
         obj.setBaseSalary(rs.getDouble("BaseSalary"));
-        obj.setBirthDate(rs.getDate("BirthDate"));
+        obj.setBirthDate(new java.util.Date(rs.getTimestamp("BirthDate").getTime()));
         obj.setDepartment(dep);
 
         return obj;

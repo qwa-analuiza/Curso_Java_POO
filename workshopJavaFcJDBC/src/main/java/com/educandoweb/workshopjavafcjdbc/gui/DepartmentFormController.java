@@ -1,5 +1,6 @@
 package com.educandoweb.workshopjavafcjdbc.gui;
 
+import com.educandoweb.workshopjavafcjdbc.db.DbException;
 import com.educandoweb.workshopjavafcjdbc.gui.listeners.DataChangeListener;
 import com.educandoweb.workshopjavafcjdbc.gui.util.Alerts;
 import com.educandoweb.workshopjavafcjdbc.gui.util.Constraints;
@@ -71,7 +72,7 @@ public class DepartmentFormController implements Initializable {
         }catch (ValidationException e ){
             setErrorMessages(e.getErrors());
         }
-        catch (db.DbException e ){
+        catch (DbException e ){
             Alerts.showAlert("Errorsaving object", null, e.getMessage(), Alert.AlertType.ERROR);
         }
     }
